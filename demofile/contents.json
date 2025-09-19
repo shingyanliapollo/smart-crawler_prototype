@@ -1,0 +1,293 @@
+{
+    "events": [
+      {
+        "title": "atelier subaco solo Exhibition azabudai「交差する森」",
+        "category": "展示会",
+        "start_date": "2025-09-13",
+        "end_date": "2025-09-23",
+        "venue_name": "atelier subaco",
+        "address": "東京都港区麻布台2-4-5",
+        "description": "アーティストatelier subacoによるソロ展。"
+      },
+      {
+        "title": "モンブランフェア",
+        "category": "フェア",
+        "start_date": "2025-09-01",
+        "start_time": "10:00",
+        "end_date": "2025-09-30",
+        "end_time": "19:00",
+        "venue_name": "クリオロ各店",
+        "description": "新作2種も登場するモンブランフェア。"
+      },
+      {
+        "title": "キャラメルフェア",
+        "category": "フェア",
+        "start_date": "2025-09-01",
+        "start_time": "10:00",
+        "end_date": "2025-09-30",
+        "end_time": "19:00",
+        "venue_name": "クリオロ各店",
+        "description": "9月はキャラメルフェアで秋の気分を味わえます。"
+      },
+      {
+        "title": "ALCANTARA®の特別展示",
+        "category": "展示会",
+        "start_date": "2025-09-17",
+        "end_date": "2025-09-30",
+        "venue_name": "FREUDE by BMW 1F",
+        "address": "東京都港区麻布台1丁目3-1",
+        "description": "ALCANTARA®が誇るバッグやアパレルを中心に特別展示。"
+      },
+      {
+        "title": "能作 NOUSAKUの特別展示",
+        "category": "展示会",
+        "start_date": "2025-09-17",
+        "end_date": "2025-09-30",
+        "venue_name": "FREUDE by BMW 1F",
+        "address": "東京都港区麻布台1丁目3-1",
+        "description": "1916年創業の鋳物メーカー「能作 NOUSAKU」の作品を展示。"
+      },
+      {
+        "title": "10％ point days",
+        "category": "キャンペーン",
+        "start_date": "2025-09-01",
+        "end_date": "2025-09-30",
+        "venue_name": "The Conran Shop",
+        "description": "期間中、ポイントが10％還元されます。"
+      },
+      {
+        "title": "BOBY WAGON OPTION CAMPAIGN",
+        "category": "キャンペーン",
+        "start_date": "2025-09-01",
+        "end_date": "2025-09-30",
+        "venue_name": "The Conran Shop",
+        "description": "BOBY WAGONのオプションキャンペーン。"
+      },
+      {
+        "title": "CH24 CUSHION CAMPAIGN",
+        "category": "キャンペーン",
+        "start_date": "2025-09-01",
+        "end_date": "2025-09-30",
+        "venue_name": "The Conran Shop",
+        "description": "CH24チェアのクッションキャンペーン。"
+      },
+      {
+        "title": "BMW x TOYOTA H2 DAYS",
+        "category": "イベント",
+        "start_date": "2025-10-04",
+        "end_date": "2025-10-05",
+        "venue_name": "FREUDE by BMW",
+        "address": "東京都港区麻布台1丁目3-1",
+        "description": "トヨタとのコラボレーションイベント。トークショーや試乗体験などを実施。 応募期間は9月23日まで。"
+      },
+      {
+        "title": "「Japan Mobility Show 2025」チケットプレゼントキャンペーン",
+        "category": "キャンペーン",
+        "start_date": "2025-09-10",
+        "end_date": "2025-10-05",
+        "venue_name": "FREUDE by BMW"
+      },
+      {
+        "title": "町田そのこ先生『彼女たちは楽園で遊ぶ』刊行記念WEBサイン会",
+        "category": "サイン会",
+        "start_date": "2025-09-18",
+        "end_date": "2025-10-05",
+        "venue_name": "オンライン",
+        "description": "作家・町田そのこ先生の新刊発売を記念したWEBサイン会。"
+      },
+      {
+        "title": "寺田克也新画本発売万歳エキシビション in KYOTO",
+        "category": "展示会",
+        "start_date": "2025-10-01",
+        "end_date": "2025-10-11",
+        "venue_name": "京都市内",
+        "description": "画家・寺田克也氏の新作画本発売を記念したエキシビション。"
+      },
+      {
+        "title": "ヤシンさん『かみさまキツネとサラリーマン ２』刊行記念WEBサイン会",
+        "category": "サイン会",
+        "start_date": "2025-09-18",
+        "end_date": "2025-10-14",
+        "venue_name": "オンライン",
+        "description": "漫画家ヤシンさんの新刊発売を記念した抽選制のWEBサイン会。"
+      },
+      {
+        "title": "BMW X5 / X6 Edition Shadow ローンチ記念プレゼントキャンペーン with ALCANTARA®",
+        "category": "キャンペーン",
+        "start_date": "2025-09-17",
+        "end_date": "2025-10-19",
+        "venue_name": "FREUDE by BMW",
+        "address": "東京都港区麻布台1丁目3-1",
+        "description": "限定オリジナル・ボストンバックを2名様にプレゼント。"
+      },
+      {
+        "title": "FALL FOR YOU",
+        "category": "キャンペーン",
+        "start_date": "2025-09-01",
+        "end_date": "2025-11-30",
+        "venue_name": "The Conran Shop",
+        "description": "秋のキャンペーン。"
+      },
+      {
+        "title": "Gervasoni Four Seasons' Promotion",
+        "category": "キャンペーン",
+        "start_date": "2025-09-01",
+        "end_date": "2025-11-30",
+        "venue_name": "The Conran Shop",
+        "description": "Gervasoniブランドの四季のキャンペーン。"
+      },
+      {
+        "title": "講談社『傷口と包帯③』大垣書店限定購入特典",
+        "category": "書籍発売",
+        "start_date": "2025-09-17",
+        "venue_name": "大垣書店",
+        "description": "対象商品を購入すると限定特典がつきます。"
+      },
+      {
+        "title": "「京伴祭」KYOTOZINE協賛チケット発売",
+        "category": "イベント",
+        "start_date": "2025-09-20",
+        "venue_name": "京都市内",
+        "description": "KYOTOZINE誌が協賛する「京伴祭」のチケットが発売されます。"
+      },
+      {
+        "title": "シェーカーとこれからの暮らし",
+        "category": "イベント",
+        "venue_name": "The Conran Shop",
+        "description": "シェーカーの魅力を紹介する企画。"
+      },
+      {
+        "title": "収納のある暮らし 広沢京子氏",
+        "category": "イベント",
+        "venue_name": "The Conran Shop",
+        "description": "収納のある暮らしをテーマにした企画。"
+      }
+    ],
+    "stores": [
+      {
+        "name": "FREUDE by BMW（フロイデ・バイ・ビーエムダブリュー）",
+        "category": "ブランドストア",
+        "features": [
+          "BMWモデルの展示",
+          "試乗体験",
+          "日本とドイツの融合カフェ・バー",
+          "日本料理レストラン",
+          "BMWブランドのインテリアやアート展示",
+          "エクスクルーシブ・ラウンジ"
+        ]
+      },
+      {
+        "name": "クリオロ 本店（小竹向原）",
+        "category": "スイーツ店",
+        "features": [
+          "シェフこだわりのスイーツ",
+          "店頭受取りホールケーキの予約可能",
+          "法人・大口注文にも対応"
+        ]
+      },
+      {
+        "name": "The Conran Shop",
+        "category": "家具・インテリアショップ",
+        "features": [
+          "デザイン性の高い家具・インテリア",
+          "生活雑貨の取り扱い"
+        ]
+      },
+      {
+        "name": "大垣書店",
+        "category": "書店",
+        "features": [
+          "書籍、雑誌、文具、ギフトなど幅広い品ぞろえ",
+          "老舗の書店チェーン",
+          "イベントスペース「催」を併設"
+        ]
+      },
+      {
+        "name": "HARBS",
+        "category": "Cafe, Bakery",
+        "features": [
+          "Specialty cakes and pastries",
+          "Cafe seating available",
+          "Locations in Japan and New York"
+        ]
+      },
+      {
+        "name": "UNITEDARROWS GLOBAL ONLINE",
+        "category": "オンラインショップ",
+        "features": [
+          "Free shipping to United States on all orders above $200",
+          "2025 Autumn Collection"
+        ]
+      },
+      {
+        "name": "Azabudai Yamayuki Fish Market",
+        "category": "Fresh",
+        "description": "Fresh fish and side dishes"
+      },
+      {
+        "name": "Nezu Matsumoto Azabudai",
+        "category": "Fresh",
+        "description": "Fresh fish and side dishes"
+      },
+      {
+        "name": "HIYAMA WAGYU",
+        "category": "Fresh",
+        "description": "Meat (beef and pork) and prepared foods"
+      },
+      {
+        "name": "Tsukiji Toritoh",
+        "category": "Fresh",
+        "description": "Meat(Chicken)"
+      },
+      {
+        "name": "KYOTO YAOICHI",
+        "category": "Fresh",
+        "description": "Fruits and vegetables/prepared foods"
+      },
+      {
+        "name": "MEIDIYA AZABUDAI STORE",
+        "category": "Grocery",
+        "description": "Grocery"
+      },
+      {
+        "name": "Nakaya",
+        "category": "Grocery",
+        "description": "pickles of japan"
+      },
+      {
+        "name": "tsukadasuisan",
+        "category": "Grocery",
+        "description": "fishi cake"
+      },
+      {
+        "name": "YAZAWAZOUMOTSUHANBAI",
+        "category": "Grocery",
+        "description": "Variety meat store"
+      },
+      {
+        "name": "Fior di Maso",
+        "category": "Grocery",
+        "description": "Italian cheese shop"
+      },
+      {
+        "name": "Kusuda Charcuterie Maitre Artisan",
+        "category": "Grocery",
+        "description": "Charcuterie"
+      },
+      {
+        "name": "DASHI OKUME",
+        "category": "Grocery",
+        "description": "Dashi / Japanese grocery"
+      },
+      {
+        "name": "The Rice Shop Sumidaya",
+        "category": "Grocery",
+        "description": "Rice/Rice ball/Okowa"
+      },
+      {
+        "name": "SABOE TOKYO",
+        "category": "Grocery",
+        "description": "Japanese tea shop"
+      }
+    ]
+  }
