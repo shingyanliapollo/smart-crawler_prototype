@@ -7,11 +7,13 @@ import structlog
 
 from src.common.logging import setup_logging, get_logger
 from src.batch.jobs.fetch_content_job import FetchContentJob
+from src.batch.jobs.filter_content_job import FilterContentJob
 
 
 # Job registry
 AVAILABLE_JOBS = {
     "fetch_content": FetchContentJob,
+    "filter_content": FilterContentJob,
 }
 
 

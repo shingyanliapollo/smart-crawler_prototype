@@ -17,6 +17,9 @@ class Settings(BaseSettings):
 
     # Firecrawl API Configuration
     firecrawl_api_key: Optional[str] = Field(default=None, description="Firecrawl API key")
+
+    # Claude API Configuration
+    anthropic_api_key: Optional[str] = Field(default=None, description="Anthropic Claude API key")
     
     # Environment
     env: str = Field(default="development", description="Environment name")

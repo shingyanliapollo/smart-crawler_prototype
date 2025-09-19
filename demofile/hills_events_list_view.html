@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hills Events - イベント一覧</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'Meiryo', 'メイリオ', sans-serif;
+            background: #2c2c2c;
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 430px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            overflow: hidden;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .header .subtitle {
+            font-size: 13px;
+            opacity: 0.8;
+        }
+
+        .stats-bar {
+            background: #f8f9fa;
+            padding: 12px 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .event-count {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .filter-toggle {
+            background: #667eea;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .events-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px;
+            background: #ffffff;
+        }
+
+        .event-item {
+            background: #fff;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .event-item:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-1px);
+        }
+
+        .event-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .event-category {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .category-exhibition { background: #e3f2fd; color: #1565c0; }
+        .category-fair { background: #f3e5f5; color: #7b1fa2; }
+        .category-campaign { background: #e8f5e8; color: #2e7d32; }
+        .category-event { background: #fff3e0; color: #ef6c00; }
+        .category-signin { background: #fce4ec; color: #c2185b; }
+        .category-book { background: #f1f8e9; color: #558b2f; }
+
+        .event-date {
+            font-size: 10px;
+            color: #888;
+            font-weight: 500;
+        }
+
+        .event-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .event-venue {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .event-description {
+            font-size: 12px;
+            color: #777;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .priority-event {
+            border-left: 4px solid #667eea;
+            background: linear-gradient(90deg, rgba(102, 126, 234, 0.05) 0%, transparent 100%);
+        }
+
+        .today-events {
+            background: linear-gradient(90deg, rgba(255, 193, 7, 0.1) 0%, transparent 100%);
+            border-left: 4px solid #ffc107;
+        }
+
+        .section-divider {
+            margin: 20px 0 16px;
+            padding: 0 4px;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #2c3e50;
+            background: white;
+            padding: 0 8px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #eee;
+            z-index: 0;
+        }
+
+        .quick-filter {
+            display: flex;
+            gap: 8px;
+            padding: 12px 16px;
+            background: #f8f9fa;
+            overflow-x: auto;
+            border-bottom: 1px solid #eee;
+        }
+
+        .filter-chip {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 11px;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-chip.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .bottom-nav {
+            background: #f8f9fa;
+            padding: 16px;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: #666;
+            font-size: 10px;
+            cursor: pointer;
+        }
+
+        .nav-item.active {
+            color: #667eea;
+        }
+
+        .nav-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            background: currentColor;
+            opacity: 0.7;
+        }
+
+        .floating-add {
+            position: absolute;
+            bottom: 80px;
+            right: 20px;
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: 300;
+            box-shadow: 0 4px 16px rgba(102, 126, 234, 0.4);
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .floating-add:hover {
+            transform: scale(1.1);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 4px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 2px;
+        }
+
+        .event-item:nth-child(-n+3) {
+            border-left: 4px solid #667eea;
+            background: linear-gradient(90deg, rgba(102, 126, 234, 0.05) 0%, transparent 100%);
+        }
+
+        .scrollbar-hide {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Hills Events</h1>
+            <div class="subtitle">麻布台ヒルズ周辺のイベント情報</div>
+        </div>
+
+        <div class="stats-bar">
+            <div class="event-count">🎉 18件のイベント</div>
+            <button class="filter-toggle">フィルター</button>
+        </div>
+
+        <div class="quick-filter">
+            <div class="filter-chip active">すべて</div>
+            <div class="filter-chip">今日</div>
+            <div class="filter-chip">今週</div>
+            <div class="filter-chip">展示会</div>
+            <div class="filter-chip">フェア</div>
+            <div class="filter-chip">キャンペーン</div>
+        </div>
+
+        <div class="events-container scrollbar-hide">
+            <!-- 注目イベント -->
+            <div class="section-divider">
+                <div class="section-title">💫 注目のイベント</div>
+            </div>
+
+            <div class="event-item priority-event">
+                <div class="event-header">
+                    <div class="event-category category-exhibition">展示会</div>
+                    <div class="event-date">9/13 - 9/23</div>
+                </div>
+                <div class="event-title">atelier subaco solo Exhibition azabudai「交差する森」</div>
+                <div class="event-venue">📍 atelier subaco</div>
+                <div class="event-description">アーティストatelier subacoによるソロ展。</div>
+            </div>
+
+            <div class="event-item priority-event">
+                <div class="event-header">
+                    <div class="event-category category-event">イベント</div>
+                    <div class="event-date">10/4 - 10/5</div>
+                </div>
+                <div class="event-title">BMW x TOYOTA H2 DAYS</div>
+                <div class="event-venue">📍 FREUDE by BMW</div>
+                <div class="event-description">トヨタとのコラボレーションイベント。トークショーや試乗体験などを実施。</div>
+            </div>
+
+            <div class="event-item priority-event">
+                <div class="event-header">
+                    <div class="event-category category-exhibition">展示会</div>
+                    <div class="event-date">9/17 - 9/30</div>
+                </div>
+                <div class="event-title">ALCANTARA®の特別展示</div>
+                <div class="event-venue">📍 FREUDE by BMW 1F</div>
+                <div class="event-description">ALCANTARA®が誇るバッグやアパレルを中心に特別展示。</div>
+            </div>
+
+            <!-- フェア・キャンペーン -->
+            <div class="section-divider">
+                <div class="section-title">🎪 フェア・キャンペーン</div>
+            </div>
+
+            <div class="event-item">
+                <div class="event-header">
+                    <div class="event-category category-fair">フェア</div>
+                    <div class="event-date">9/1 - 9/30</div>
+                </div>
+                <div class="event-title">モンブランフェア</div>
+                <div class="event-venue">📍 クリオロ各店</div>
+                <div class="event-description">新作2種も登場するモンブランフェア。</div>
+            </div>
+
+            <div class="event-item">
+                <div class="event-header">
+                    <div class="event-category category-fair">フェア</div>
+                    <div class="event-date">9/1 - 9/30</div>
+                </div>
+                <div class="event-title">キャラメルフェア</div>
+                <div class="event-venue">📍 クリオロ各店</div>
+                <div class="event-description">9月はキャラメルフェアで秋の気分を味わえます。</div>
+            </div>
+
+            <div class="event-item">
+                <div class="event-header">
+                    <div class="event-category category-campaign">キャンペーン</div>
+                    <div class="event-date">9/1 - 9/30</div>
+                </div>
+                <div class="event-title">10％ point days</div>
+                <div class="event-venue">📍 The Conran Shop</div>
+                <div class="event-description">期間中、ポイントが10％還元されます。</div>
+            </div>
+
+            <div class="event-item">
+                <div class="event-header">
+                    <div class="event-category category-campaign">キャンペーン</div>
+                    <div class="event-date">9/1 - 11/30</div>
+                </div>
+                <div class="event-title">FALL FOR YOU</div>
+                <div class="event-venue">📍 The Conran Shop</div>
+                <div class="event-description">秋のキャンペーン。</div>
+            </div>
+
+            <!-- 書籍・出版関連 -->
+            <div class="section-divider">
+                <div class="section-title">📚 書籍・出版関連</div>
+            </div>
+
+            <div class="event-item">
+                <div class="event-header">
+                    <div class="event-category category-signin">サイン会</div>
+                    <div class="event-date">9/18 - 10/5</div>
+                </div>
+                <div class="event-title">町田そのこ先生『彼女たちは楽園で遊ぶ』刊行記念WEBサイン会</div>
+                <div class="event-venue">📍 オンライン</div>
+                <div class="event-description">作家・町田そのこ先生の新刊発売を記念したWEBサイン会。</div>
+            </div>
+
+            <div class="event-item">
+                <div class="event-header">
+                    <div class="event-category category-signin">サイン会</div>
+                    <div class="event-date">9/18 - 10/14</div>
+                </div>
+                <div class="event-title">ヤシンさん『かみさまキツネとサラリーマン ２』刊行記念WEBサイン会</div>
+                <div class="event-venue">📍 オンライン</div>
+                <div class="event-description">漫画家ヤシンさんの新刊発売を記念した抽選制のWEBサイン会。</div>
+            </div>
+
+            <div class="event-item">
+                <div class="event-header">
+                    <div class="event-category category-book">書籍発売</div>
+                    <div class="event-date">9/17</div>
+                </div>
+                <div class="event-title">講談社『傷口と包帯③』大垣書店限定購入特典</div>
+                <div class="event-venue">📍 大垣書店</div>
+                <div class="event-description">対象商品を購入すると限定特典がつきます。</div>
+            </div>
+
+            <!-- その他のイベント -->
+            <div class="section-divider">
+                <div class="section-title">🎨 その他のイベント</div>
+            </div>
+
+            <div class="event-item">
+                <div class="event-header">
+                    <div class="event-category category-exhibition">展示会</div>
+                    <div class="event-date">9/17 - 9/30</div>
+                </div>
+                <div class="event-title">能作 NOUSAKUの特別展示</div>
+                <div class="event-venue">📍 FREUDE by BMW 1F</div>
+                <div class="event-description">1916年創業の鋳物メーカー「能作 NOUSAKU」の作品を展示。</div>
+            </div>
+
+            <div class="event-item">
+                <div class="event-header">
+                    <div class="event-category category-exhibition">展示会</div>
+                    <div class="event-date">10/1 - 10/11</div>
+                </div>
+                <div class="event-title">寺田克也新画本発売万歳エキシビション in KYOTO</div>
+                <div class="event-venue">📍 京都市内</div>
+                <div class="event-description">画家・寺田克也氏の新作画本発売を記念したエキシビション。</div>
+            </div>
+
+            <div class="event-item">
+                <div class="event-header">
+                    <div class="event-category category-event">イベント</div>
+                    <div class="event-date">9/20</div>
+                </div>
+                <div class="event-title">「京伴祭」KYOTOZINE協賛チケット発売</div>
+                <div class="event-venue">📍 京都市内</div>
+                <div class="event-description">KYOTOZINE誌が協賛する「京伴祭」のチケットが発売されます。</div>
+            </div>
+
+            <div class="event-item">
+                <div class="event-header">
+                    <div class="event-category category-campaign">キャンペーン</div>
+                    <div class="event-date">9/17 - 10/19</div>
+                </div>
+                <div class="event-title">BMW X5 / X6 Edition Shadow ローンチ記念プレゼントキャンペーン</div>
+                <div class="event-venue">📍 FREUDE by BMW</div>
+                <div class="event-description">限定オリジナル・ボストンバックを2名様にプレゼント。</div>
+            </div>
+
+            <div class="event-item">
+                <div class="event-header">
+                    <div class="event-category category-event">イベント</div>
+                    <div class="event-date">開催中</div>
+                </div>
+                <div class="event-title">シェーカーとこれからの暮らし</div>
+                <div class="event-venue">📍 The Conran Shop</div>
+                <div class="event-description">シェーカーの魅力を紹介する企画。</div>
+            </div>
+
+            <div class="event-item">
+                <div class="event-header">
+                    <div class="event-category category-event">イベント</div>
+                    <div class="event-date">開催中</div>
+                </div>
+                <div class="event-title">収納のある暮らし 広沢京子氏</div>
+                <div class="event-venue">📍 The Conran Shop</div>
+                <div class="event-description">収納のある暮らしをテーマにした企画。</div>
+            </div>
+
+            <div style="height: 20px;"></div>
+        </div>
+
+        <div class="bottom-nav">
+            <div class="nav-item active">
+                <div class="nav-icon"></div>
+                <span>イベント</span>
+            </div>
+            <div class="nav-item">
+                <div class="nav-icon"></div>
+                <span>お店</span>
+            </div>
+            <div class="nav-item">
+                <div class="nav-icon"></div>
+                <span>マップ</span>
+            </div>
+            <div class="nav-item">
+                <div class="nav-icon"></div>
+                <span>お気に入り</span>
+            </div>
+        </div>
+
+        <div class="floating-add">+</div>
+        <div class="scroll-indicator"></div>
+    </div>
+</body>
+</html>
