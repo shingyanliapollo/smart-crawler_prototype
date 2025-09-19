@@ -23,14 +23,14 @@ class ClaudeService:
 
     def extract_event_info(self, content: str, source_url: str = "") -> Dict[str, Any]:
         """
-        Extract event information from content using Claude.
+        Extract event information and store basic information from content using Claude.
 
         Args:
             content: Raw content to analyze
             source_url: Optional source URL for context
 
         Returns:
-            Dictionary containing extracted event information
+            Dictionary containing extracted event information and store basic info
         """
         prompt = self._build_extraction_prompt(content, source_url)
 
@@ -125,9 +125,12 @@ class ClaudeService:
             }
 
     def _build_extraction_prompt(self, content: str, source_url: str = "") -> str:
-        """Build prompt for event extraction."""
+        """Build prompt for event extraction and store basic information."""
         return f"""
-あなたは日本のイベント情報を抽出する専門家です。提供されたコンテンツからイベント情報を抽出してください。
+あなたは日本のWebサイトからイベント情報と店舗・施設の基本情報を抽出する専門家です。提供されたコンテンツから以下の情報を抽出してください：
+
+1. イベント情報（もしあれば）
+2. 店舗・施設の基本情報
 
 コンテンツ:
 {content}
@@ -138,6 +141,21 @@ class ClaudeService:
 
 {{
   "has_event": true/false,
+  "store_info": {{
+    "name": "店舗・施設名",
+    "category": "業種・カテゴリ（例：レストラン、書店、美術館、ショッピングモール等）",
+    "description": "店舗・施設の基本説明",
+    "address": "住所",
+    "prefecture": "都道府県",
+    "city": "市区町村",
+    "phone": "電話番号",
+    "website": "公式Webサイト",
+    "business_hours": "営業時間",
+    "regular_holiday": "定休日",
+    "access": "アクセス方法",
+    "features": ["特徴やサービス1", "特徴やサービス2"],
+    "price_range": "価格帯（例：1000-3000円、高級、お手頃等）"
+  }},
   "events": [
     {{
       "title": "イベントタイトル",
@@ -163,11 +181,13 @@ class ClaudeService:
 }}
 
 注意事項:
+- 店舗・施設情報は可能な限り抽出してください
 - イベント情報が見つからない場合は "has_event": false を返してください
 - 日付は YYYY-MM-DD 形式で統一してください
 - 時間は HH:MM 形式（24時間表記）で統一してください
 - 情報が不明な場合は null を使用してください
 - 複数のイベントがある場合は配列で返してください
+- 店舗の特徴は配列で複数記載してください
 """
 
     def _build_normalization_prompt(self, event_data: Dict[str, Any]) -> str:
