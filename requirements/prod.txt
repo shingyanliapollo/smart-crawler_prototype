@@ -1,0 +1,6 @@
+# Production requirements (base only, no dev tools)
+-r base.txt
+
+# Production-specific monitoring (optional)
+# sentry-sdk==1.39.1
+# prometheus-client==0.19.0

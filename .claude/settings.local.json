@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(docker-compose run:*)",
+      "Bash(docker-compose build:*)",
+      "Bash(docker-compose:*)",
+      "Bash(docker-compose up:*)",
+      "Bash(python -m pytest tests/ -v --tb=short)",
+      "Bash(make status:*)",
+      "mcp__sequential-thinking__sequentialthinking",
+      "Bash(mkdir:*)",
+      "Bash(pip install:*)",
+      "Bash(python:*)",
+      "Bash(set FIRECRAWL_API_KEY=c-1121ce8f98774cd4aceea435082e6fb1)",
+      "Bash(git init:*)",
+      "Bash(git remote add:*)",
+      "Bash(git add:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

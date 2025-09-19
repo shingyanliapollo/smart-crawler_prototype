@@ -1,0 +1,72 @@
+services:
+  batch:
+    build:
+      context: .
+      dockerfile: docker/batch/Dockerfile
+    container_name: smart_crawl_batch
+    volumes:
+      - ./src:/app/src
+      - ./tests:/app/tests
+      - ./scripts:/app/scripts
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./input:/app/input
+      - ./output:/app/output
+    env_file:
+      - .env
+    environment:
+      - PYTHONPATH=/app
+      - ENV=${ENV:-development}
+    networks:
+      - smart_crawl_network
+    restart: unless-stopped
+    command: tail -f /dev/null  # Keep container running for development
+
+  # 将来的にAPIサーバーを追加する場合のプレースホルダー
+  # api:
+  #   build:
+  #     context: .
+  #     dockerfile: docker/api/Dockerfile
+  #   container_name: smart_crawl_api
+  #   ports:
+  #     - "8000:8000"
+  #   volumes:
+  #     - ./src:/app/src
+  #     - ./logs:/app/logs
+  #   env_file:
+  #     - .env
+  #   environment:
+  #     - PYTHONPATH=/app
+  #     - ENV=${ENV:-development}
+  #   networks:
+  #     - smart_crawl_network
+  #   restart: unless-stopped
+
+  # 将来的にデータベースを追加する場合のプレースホルダー
+  # postgres:
+  #   image: postgres:15-alpine
+  #   container_name: smart_crawl_db
+  #   environment:
+  #     - POSTGRES_DB=${DB_NAME:-smart_crawl}
+  #     - POSTGRES_USER=${DB_USER:-smart_user}
+  #     - POSTGRES_PASSWORD=${DB_PASSWORD:-smart_password}
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   networks:
+  #     - smart_crawl_network
+  #   restart: unless-stopped
+
+  # 将来的にRedisを追加する場合のプレースホルダー
+  # redis:
+  #   image: redis:7-alpine
+  #   container_name: smart_crawl_redis
+  #   networks:
+  #     - smart_crawl_network
+  #   restart: unless-stopped
+
+networks:
+  smart_crawl_network:
+    driver: bridge
+
+# volumes:
+#   postgres_data:
